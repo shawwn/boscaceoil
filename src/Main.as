@@ -131,7 +131,7 @@ package
 			tempbmp = new im_tutorialimage4();
 			gfx.buffer = tempbmp.bitmapData;
 			gfx.addimage();
-			gfx.buffer = new BitmapData(1, 1, false, 0x000000);
+			gfx.buffer = new BitmapData(1, 1, true, 0xFFFF00FF);
 			
 			control.changetab(control.MENUTAB_FILE);
 			
@@ -213,9 +213,9 @@ package
 			
 			guiclass.changetab(control.currenttab);
 			
-			var temp:BitmapData = new BitmapData(gfx.windowwidth, gfx.windowheight, false, 0x000000);
+			var temp:BitmapData = new BitmapData(gfx.windowwidth, gfx.windowheight, true, 0xFFFF00FF);
 			gfx.updatebackground = 5;
-			gfx.backbuffercache = new BitmapData(gfx.windowwidth, gfx.windowheight, false, 0x000000);
+			gfx.backbuffercache = new BitmapData(gfx.windowwidth, gfx.windowheight, true, 0xFFFF00FF);
 			temp.copyPixels(gfx.backbuffer, gfx.backbuffer.rect, gfx.tl);
 			gfx.backbuffer = temp;
 			//gfx.screen.bitmapData.dispose();

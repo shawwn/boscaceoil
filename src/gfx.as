@@ -94,14 +94,23 @@
 			pal[19].setto(222, 222, 0);       //Darker Yellow
 			
 			pal[20].setto(65, 82, 87);        //Background mouseover
+			pal[21].setto(160, 160, 160);     //Pattern mouseover
 			
 			//Blue
-			pal[100].setto(59, 39, 238);       //Bar, Bright
-			pal[101].setto(43, 33, 151);       //Bar, Dark
-			pal[102].setto(10, 14, 62);       //Guideline
-			pal[103].setto(5, 7, 31);         //Dark guideline
-			pal[104].setto(255,185,95);      //Note, dark part
-			pal[105].setto(255,255,192);      //Note, bright part
+			//pal[100].setto(59, 39, 238);       //Bar, Bright
+			//pal[101].setto(43, 33, 151);       //Bar, Dark
+			//pal[102].setto(10, 14, 62);       //Guideline
+			//pal[103].setto(5, 7, 31);         //Dark guideline
+			//pal[104].setto(255,185,95);      //Note, dark part
+			//pal[105].setto(255,255,192);      //Note, bright part
+			//pal[106].setto(188,207,255);     //Octave change
+
+			pal[100].setto(236, 238, 241);       //Bar, Bright
+			pal[101].setto(217, 222, 227);       //Bar, Dark
+			pal[102].setto(0, 0, 0, 5);   //Guideline
+			pal[103].setto(0, 0, 0, 10);     //Dark guideline
+			pal[104].setto(103,12,30);      //Note, dark part
+			pal[105].setto(205,17,56);      //Note, bright part
 			pal[106].setto(188,207,255);     //Octave change
 			
 			//Purple
@@ -189,31 +198,31 @@
 					var notename:String = (n > -1) ? control.notename[control.pianoroll[n]] : "";
 					var sharp:Boolean = isdrumkit ? (n % 2 == 0) : (lastchar(notename) == '#');
 					if (!sharp) {
-						fillrect(0, screenheight - linesize - (i * linesize), screenwidth, linesize, 100 + (control.musicbox[control.currentbox].palette * 10));
-						fillrect(0, screenheight - linesize - (i * linesize), screenwidth, 2, 103+(control.musicbox[control.currentbox].palette*10));
+						fillrect(0, screenheight - linesize - (i * linesize), screenwidth, linesize, 100 + (control.musicbox[control.currentbox].palette*0 * 10));
+						//fillrect(0, screenheight - linesize - (i * linesize), screenwidth, 2, 103+(control.musicbox[control.currentbox].palette*0*10));
 					}else{
-						fillrect(0, screenheight - linesize - (i * linesize), screenwidth, linesize, 101 + (control.musicbox[control.currentbox].palette * 10));
-						fillrect(0, screenheight - linesize - (i * linesize), screenwidth, 2, 103+(control.musicbox[control.currentbox].palette*10));
+						fillrect(0, screenheight - linesize - (i * linesize), screenwidth, linesize, 101 + (control.musicbox[control.currentbox].palette*0 * 10));
+						//fillrect(0, screenheight - linesize - (i * linesize), screenwidth, 2, 103+(control.musicbox[control.currentbox].palette*0*10));
 					}
 				}
 			}
 			
 			//Draw bars
 			for (i = 0; i < control.boxcount; i++) {
-				fillrect(40 + (i * control.boxsize), pianorollposition + linesize, 2, (linesize * patterneditorheight), 102+(control.musicbox[control.currentbox].palette*10));
+				fillrect(40 + (i * control.boxsize), pianorollposition + linesize, 2, (linesize * patterneditorheight), 102+(control.musicbox[control.currentbox].palette*0*10));
 			}
 			for (i = 0; i <= (control.boxcount / control.barcount) + 1; i++) {
-				fillrect(40 + (i * control.barsize)+2, pianorollposition + linesize, 2,  (linesize * patterneditorheight), 103+(control.musicbox[control.currentbox].palette*10));
+				fillrect(40 + (i * control.barsize)+2, pianorollposition + linesize, 2,  (linesize * patterneditorheight), 103+(control.musicbox[control.currentbox].palette*0*10));
 			}
 			
 			//Reduced patternsize? Just draw over it!
 			if (control.doublesize) {
 				if (control.boxcount < 32) {
-					fillrect(42 + (control.boxcount * control.boxsize), pianorollposition + linesize, screenwidth, linesize*patterneditorheight, 103 + (control.musicbox[control.currentbox].palette * 10));
+					fillrect(42 + (control.boxcount * control.boxsize), pianorollposition + linesize, screenwidth, linesize*patterneditorheight, 103 + (control.musicbox[control.currentbox].palette*0 * 10));
 				}
 			}else{
 				if (control.boxcount < 16) {
-					fillrect(42 + (control.boxcount * control.boxsize), pianorollposition + linesize, screenwidth, linesize*patterneditorheight, 103 + (control.musicbox[control.currentbox].palette * 10));
+					fillrect(42 + (control.boxcount * control.boxsize), pianorollposition + linesize, screenwidth, linesize*patterneditorheight, 103 + (control.musicbox[control.currentbox].palette*0 * 10));
 				}
 			}
 			
@@ -280,8 +289,8 @@
 				j = control.musicbox[control.currentbox].start;
 				for (i = 0; i < notesonscreen; i++) {
 					if ((j + i) % control.scalesize == 0) {
-						fillrect(30, screenheight - linesize - (i * linesize), screenwidth, 3, 106 + (control.musicbox[control.currentbox].palette * 10));
-						fillrect(30, screenheight - linesize - (i * linesize) + 3, screenwidth, 1, 107 + (control.musicbox[control.currentbox].palette * 10));
+						fillrect(30, screenheight - linesize - (i * linesize), screenwidth, 3, 106 + (control.musicbox[control.currentbox].palette*0 * 10));
+						fillrect(30, screenheight - linesize - (i * linesize) + 3, screenwidth, 1, 107 + (control.musicbox[control.currentbox].palette*0 * 10));
 						tempstring = String(int(j + i) / control.scalesize);
 						print(screenwidth - 20, screenheight - linesize - (i * linesize) + 4, tempstring, 0, false, true);
 					}
@@ -297,19 +306,19 @@
 					if (control.drawnoteposition > -1) {			
 						control.drawnoteposition -= control.musicbox[control.currentbox].start;
 						if (control.drawnoteposition <= 0) {
-							fillrect(42 + (i * control.boxsize), screenheight - linesize - 4, control.drawnotelength, 4, 104+(control.musicbox[control.currentbox].palette*10));
-							fillrect(42 + (i * control.boxsize), screenheight - linesize - 2, control.drawnotelength, 2, 105+(control.musicbox[control.currentbox].palette*10));
-							fillrect(42 + (i * control.boxsize), screenheight - linesize - 8, 2, 8, 105+(control.musicbox[control.currentbox].palette*10));
-							fillrect(42 + (i * control.boxsize) + control.drawnotelength - 2, screenheight - linesize - 8, 2, 8, 105 + (control.musicbox[control.currentbox].palette * 10));
+							fillrect(42 + (i * control.boxsize), screenheight - linesize - 4, control.drawnotelength, 4, 104+(control.musicbox[control.currentbox].palette*0*10));
+							fillrect(42 + (i * control.boxsize), screenheight - linesize - 2, control.drawnotelength, 2, 105+(control.musicbox[control.currentbox].palette*0*10));
+							fillrect(42 + (i * control.boxsize), screenheight - linesize - 8, 2, 8, 105+(control.musicbox[control.currentbox].palette*0*10));
+							fillrect(42 + (i * control.boxsize) + control.drawnotelength - 2, screenheight - linesize - 8, 2, 8, 105 + (control.musicbox[control.currentbox].palette*0 * 10));
 						}else if (control.drawnoteposition >= notesonscreen) {
-							fillrect(42 + (i * control.boxsize), pianorollposition + linesize, control.drawnotelength, 4, 104+(control.musicbox[control.currentbox].palette*10));
-							fillrect(42 + (i * control.boxsize), pianorollposition + linesize, control.drawnotelength, 2, 105+(control.musicbox[control.currentbox].palette*10));
-							fillrect(42 + (i * control.boxsize), pianorollposition + linesize, 2, 8, 105+(control.musicbox[control.currentbox].palette*10));
-							fillrect(42 + (i * control.boxsize) + control.drawnotelength - 2, pianorollposition + linesize, 2, 8, 105+(control.musicbox[control.currentbox].palette*10));
+							fillrect(42 + (i * control.boxsize), pianorollposition + linesize, control.drawnotelength, 4, 104+(control.musicbox[control.currentbox].palette*0*10));
+							fillrect(42 + (i * control.boxsize), pianorollposition + linesize, control.drawnotelength, 2, 105+(control.musicbox[control.currentbox].palette*0*10));
+							fillrect(42 + (i * control.boxsize), pianorollposition + linesize, 2, 8, 105+(control.musicbox[control.currentbox].palette*0*10));
+							fillrect(42 + (i * control.boxsize) + control.drawnotelength - 2, pianorollposition + linesize, 2, 8, 105+(control.musicbox[control.currentbox].palette*0*10));
 						}else {
-							fillrect(42 + (i * control.boxsize), screenheight - linesize - (control.drawnoteposition * linesize), control.drawnotelength, linesize, 105+(control.musicbox[control.currentbox].palette*10));
-							fillrect(42 + (i * control.boxsize), screenheight - linesize - (control.drawnoteposition * linesize) + 16, control.drawnotelength, 4, 104+(control.musicbox[control.currentbox].palette*10));
-							fillrect(42 + (i * control.boxsize) + control.drawnotelength - 4,  screenheight - linesize - (control.drawnoteposition * linesize), 4, linesize, 104 + (control.musicbox[control.currentbox].palette * 10));
+							fillrect(42 + (i * control.boxsize), screenheight - linesize - (control.drawnoteposition * linesize), control.drawnotelength, linesize, 105+(control.musicbox[control.currentbox].palette*0*10));
+							fillrect(42 + (i * control.boxsize), screenheight - linesize - (control.drawnoteposition * linesize) + 16, control.drawnotelength, 4, 104+(control.musicbox[control.currentbox].palette*0*10));
+							fillrect(42 + (i * control.boxsize) + control.drawnotelength - 4,  screenheight - linesize - (control.drawnoteposition * linesize), 4, linesize, 104 + (control.musicbox[control.currentbox].palette*0 * 10));
 							
 							tempstring = String(int(control.musicbox[control.currentbox].notes[j].y))
 							if (control.doublesize) {
@@ -340,16 +349,16 @@
 			if (control.cursorx > -1 && control.cursory > -1) {
 				if (control.musicbox[control.currentbox].start + control.cursory - 1 == -1) {
 					if (control.doublesize) {
-						drawbox(40 + (4 * control.boxsize), gfx.screenheight - linesize - (control.cursory * linesize), control.boxsize * 24, linesize, 0);
+						drawbox(40 + (4 * control.boxsize), gfx.screenheight - linesize - (control.cursory * linesize), control.boxsize * 24, linesize, 21);
 					}else{
-						drawbox(40 + (2 * control.boxsize), gfx.screenheight - linesize - (control.cursory * linesize), control.boxsize * 12, linesize, 0);
+						drawbox(40 + (2 * control.boxsize), gfx.screenheight - linesize - (control.cursory * linesize), control.boxsize * 12, linesize, 21);
 					}
 				}else {
 					if (control.cursory == notesonscreen - 1) {
 						//draw partial cursor
 						drawpartialbox(40 + (control.cursorx * control.boxsize), gfx.screenheight - linesize - (control.cursory * linesize), control.boxsize * control.notelength, linesize, 0, pianorollposition + linesize);
 					}else {
-						drawbox(40 + (control.cursorx * control.boxsize), gfx.screenheight - linesize - (control.cursory * linesize), control.boxsize * control.notelength, linesize, 0);
+						drawbox(40 + (control.cursorx * control.boxsize), gfx.screenheight - linesize - (control.cursory * linesize), control.boxsize * control.notelength, linesize, 21);
 						if (control.notelength > control.boxcount) {
 							tempstring = String(control.notelength);
 							print(40 + (control.cursorx * control.boxsize), gfx.screenheight - linesize  - (control.cursory * linesize), tempstring, 0);
@@ -366,10 +375,10 @@
 				fillrect(control.list.x, control.list.y, control.list.w, control.list.h, 11);
 				if (control.list.type == control.LIST_SELECTINSTRUMENT) {
 					for (i = 0; i < control.list.numitems; i++) {
-						fillrect(control.list.x, control.list.y + (i * linesize), control.list.w, linesize, 101 + (control.instrument[i].palette*10));
+						fillrect(control.list.x, control.list.y + (i * linesize), control.list.w, linesize, 101 + (control.instrument[i].palette*0*10));
 					}
 					if (control.list.selection > -1) {
-						fillrect(control.list.x, control.list.y + (control.list.selection * linesize), control.list.w, linesize, 100 + (control.instrument[control.list.selection].palette*10));
+						fillrect(control.list.x, control.list.y + (control.list.selection * linesize), control.list.w, linesize, 100 + (control.instrument[control.list.selection].palette*0*10));
 					}
 				}else {
 					for (i = 0; i < control.list.numitems; i++) {
@@ -431,7 +440,7 @@
 		public static function drawmusicbox(xp:int, yp:int, t:int, enabled:Boolean=true, forcezoom:int = -1):void {
 			//Draw a little music box containing our notes!
 			if (xp < screenwidth) {
-				temppal = control.musicbox[t].palette;
+				temppal = control.musicbox[t].palette*0;
 				if (!enabled) temppal = 21;
 				
 				if (forcezoom == -1) {
@@ -670,8 +679,8 @@
 				}else {
 					//Normal
 					if (control.instrumentmanagerview + k < control.numinstrument) {
-						fillrect(4, linesize + 4 + (k * patternheight), 272, 24, 100 + (control.instrument[control.instrumentmanagerview + k].palette * 10));
-						fillrect(4+50, linesize + 4 + (k * patternheight), 272-50, 24, 101 + (control.instrument[control.instrumentmanagerview + k].palette * 10));
+						fillrect(4, linesize + 4 + (k * patternheight), 272, 24, 100 + (control.instrument[control.instrumentmanagerview + k].palette*0 * 10));
+						fillrect(4+50, linesize + 4 + (k * patternheight), 272-50, 24, 101 + (control.instrument[control.instrumentmanagerview + k].palette*0 * 10));
 						print(12, linesize + 6 + (k * patternheight), String(control.instrumentmanagerview + k + 1), 0, false, true);
 						print(56, linesize + 6 + (k * patternheight), control.instrument[control.instrumentmanagerview + k].name, 0, false, true);
 					}
@@ -684,14 +693,14 @@
 		}
 		
 		public static function drawinstrument():void {
-			fillrect(280, linesize, screenwidth - 280, pianorollposition, 101 + (control.instrument[control.currentinstrument].palette * 10));
+			fillrect(280, linesize, screenwidth - 280, pianorollposition, 101 + (control.instrument[control.currentinstrument].palette*0 * 10));
 			print(290, linesize + 6, "INSTRUMENT " + String(control.currentinstrument + 1), 0, false, true);
 			
-			fillrect(286, (linesize * 2) + 6, 160, linesize, 100 + (control.instrument[control.currentinstrument].palette * 10));
+			fillrect(286, (linesize * 2) + 6, 160, linesize, 100 + (control.instrument[control.currentinstrument].palette*0 * 10));
 			drawicon(290, (linesize * 2) + 4, 0);
 			print(320, (linesize * 2) + 6, control.instrument[control.currentinstrument].category, 0, false, true);
 			
-			fillrect(286+180, (linesize * 2)+6, 280, linesize, 100 + (control.instrument[control.currentinstrument].palette * 10));
+			fillrect(286+180, (linesize * 2)+6, 280, linesize, 100 + (control.instrument[control.currentinstrument].palette*0 * 10));
 			drawicon(290+180, (linesize * 2) + 4, 0);
 			print(320 + 180, (linesize * 2) + 6, control.instrument[control.currentinstrument].name, 0, false, true);
 			
@@ -719,26 +728,26 @@
 				
 				//Move over recording
 				j = int(((256-control.musicbox[control.currentbox].volumegraph[control.looptime%control.boxcount]) * 90) / 256);
-				fillrect(screenwidth - 42, (linesize * 4) + j, 20, 20, 101 + (control.instrument[control.currentinstrument].palette * 10));
-				fillrect(screenwidth - 42 + 2, (linesize * 4) + j + 2, 16, 16, 100 + (control.instrument[control.currentinstrument].palette * 10));		
+				fillrect(screenwidth - 42, (linesize * 4) + j, 20, 20, 101 + (control.instrument[control.currentinstrument].palette*0 * 10));
+				fillrect(screenwidth - 42 + 2, (linesize * 4) + j + 2, 16, 16, 100 + (control.instrument[control.currentinstrument].palette*0 * 10));		
 				
 				i = int((control.musicbox[control.currentbox].cutoffgraph[control.looptime%control.boxcount] * (screenwidth - 368)) / 128);
 			  j = int((control.musicbox[control.currentbox].resonancegraph[control.looptime%control.boxcount] * 90) / 9);
-			  fillrect(286 + i, (linesize * 4) + j, 20, 20, 101 + (control.instrument[control.currentinstrument].palette * 10));
-				fillrect(286 + i + 2, (linesize * 4) + j + 2, 16, 16, 100 + (control.instrument[control.currentinstrument].palette * 10));		
+			  fillrect(286 + i, (linesize * 4) + j, 20, 20, 101 + (control.instrument[control.currentinstrument].palette*0 * 10));
+				fillrect(286 + i + 2, (linesize * 4) + j + 2, 16, 16, 100 + (control.instrument[control.currentinstrument].palette*0 * 10));		
 			}else {
-				fillrect(286, (linesize * 4), screenwidth - 348, 110, 102 + (control.instrument[control.currentinstrument].palette * 10));
-				fillrect(screenwidth - 42, (linesize * 4), 20, 110, 102 + (control.instrument[control.currentinstrument].palette * 10));
+				fillrect(286, (linesize * 4), screenwidth - 348, 110, 102 + (control.instrument[control.currentinstrument].palette*0 * 10));
+				fillrect(screenwidth - 42, (linesize * 4), 20, 110, 102 + (control.instrument[control.currentinstrument].palette*0 * 10));
 				
 				for (i = 0; i < 110; i++) {
 					if (i % 4 == 0) {
-						fillrect(286, (linesize * 4) + i, screenwidth - 348, 2, 103 + (control.instrument[control.currentinstrument].palette * 10));
-						fillrect(screenwidth - 42, (linesize * 4) + i, 20, 2, 103 + (control.instrument[control.currentinstrument].palette * 10));
+						fillrect(286, (linesize * 4) + i, screenwidth - 348, 2, 103 + (control.instrument[control.currentinstrument].palette*0 * 10));
+						fillrect(screenwidth - 42, (linesize * 4) + i, 20, 2, 103 + (control.instrument[control.currentinstrument].palette*0 * 10));
 					}
 				}
 				
-				print(286 + ((screenwidth - 348)/2) - (len("LOW PASS FILTER PAD") / 2), (linesize * 4) + 114, "LOW PASS FILTER PAD", 103 + (control.instrument[control.currentinstrument].palette * 10));
-				print(screenwidth - 52, (linesize * 4) + 114, "VOL", 103 + (control.instrument[control.currentinstrument].palette * 10));				
+				print(286 + ((screenwidth - 348)/2) - (len("LOW PASS FILTER PAD") / 2), (linesize * 4) + 114, "LOW PASS FILTER PAD", 103 + (control.instrument[control.currentinstrument].palette*0 * 10));
+				print(screenwidth - 52, (linesize * 4) + 114, "VOL", 103 + (control.instrument[control.currentinstrument].palette*0 * 10));				
 				
 				//Default values
 				j = 0;
@@ -751,13 +760,13 @@
 				
 				//Switches for volume/filter
 				j = int((256-control.instrument[control.currentinstrument].volume) * 90 / 256);
-				fillrect(screenwidth - 42, (linesize * 4) + j, 20, 20, 101 + (control.instrument[control.currentinstrument].palette * 10));
-				fillrect(screenwidth - 42 + 2, (linesize * 4) + j + 2, 16, 16, 100 + (control.instrument[control.currentinstrument].palette * 10));
+				fillrect(screenwidth - 42, (linesize * 4) + j, 20, 20, 101 + (control.instrument[control.currentinstrument].palette*0 * 10));
+				fillrect(screenwidth - 42 + 2, (linesize * 4) + j + 2, 16, 16, 100 + (control.instrument[control.currentinstrument].palette*0 * 10));
 				
 				i = int(control.instrument[control.currentinstrument].cutoff * (screenwidth - 368) / 128);
 				j = int(control.instrument[control.currentinstrument].resonance * 90 / 9);
-				fillrect(286 + i, (linesize * 4) + j, 20, 20, 101 + (control.instrument[control.currentinstrument].palette * 10));
-				fillrect(286 + i + 2, (linesize * 4) + j + 2, 16, 16, 100 + (control.instrument[control.currentinstrument].palette * 10));
+				fillrect(286 + i, (linesize * 4) + j, 20, 20, 101 + (control.instrument[control.currentinstrument].palette*0 * 10));
+				fillrect(286 + i + 2, (linesize * 4) + j + 2, 16, 16, 100 + (control.instrument[control.currentinstrument].palette*0 * 10));
 			}
 		}
 		
@@ -781,12 +790,12 @@
 			
 			icons_rect = new Rectangle(0, 0, 32, 32);
 			trect = new Rectangle; tpoint = new Point();
-			tbuffer = new BitmapData(1, 1, true);
 			ct = new ColorTransform(0, 0, 0, 1, 255, 255, 255, 1); //Set to white
 			tempicon = new BitmapData(32, 32, false, 0x000000);
 			
-			backbuffer = new BitmapData(1, 1, false, 0x000000);
-			backbuffercache = new BitmapData(1, 1, false, 0x000000);
+			tbuffer = new BitmapData(1, 1, true, 0x00000000);
+			backbuffer = new BitmapData(1, 1, true, 0x000000);
+			backbuffercache = new BitmapData(1, 1, true, 0x000000);
 			
 			for (i = 0; i < 400; i++) {
 				pal.push(new paletteclass());
@@ -861,20 +870,24 @@
 		}
 		
 		public static function addimage():void {
-			var t:BitmapData = new BitmapData(buffer.width, buffer.height, true, 0x000000);
+			var t:BitmapData = new BitmapData(buffer.width, buffer.height, true, 0x00000000);
 			t.copyPixels(buffer, new Rectangle(0, 0, buffer.width, buffer.height), tl);
 			images.push(t);
 		}
 		
 		public static function drawimage(t:int, xp:int, yp:int):void {
-			settpoint(xp, yp);
-			settrect(0, 0, images[t].width, images[t].height);
-			backbuffer.copyPixels(images[t], trect, tpoint);
+			//settpoint(xp, yp);
+			//settrect(0, 0, images[t].width, images[t].height);
+			//backbuffer.copyPixels(images[t], trect, tpoint);
+
+			worldMatrix.translate (xp, yp);
+			backbuffer.draw(images[t], worldMatrix);
+			worldMatrix.translate (-xp, -yp);
 		}
 		
 		public static function makeiconarray():void {
 			for (var i:int = 0; i < 20; i++) {
-				var t:BitmapData = new BitmapData(32, 32, true, 0x000000);
+				var t:BitmapData = new BitmapData(32, 32, true, 0x00000000);
 				var temprect:Rectangle = new Rectangle(i * 32, 0, 32, 32);	
 				t.copyPixels(buffer, temprect, tl);
 				icons.push(t);
@@ -889,7 +902,7 @@
 				drawline(x1, y2, x2, y1, col);
 			}else {
 				tempshape.graphics.clear();
-				tempshape.graphics.lineStyle(1, RGB(pal[col].r, pal[col].g, pal[col].b));
+				tempshape.graphics.lineStyle(1, RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a));
 				tempshape.graphics.lineTo(x2 - x1, y2 - y1);
 				
 				shapematrix.translate(x1, y1);
@@ -900,28 +913,28 @@
 		
 		public static function drawpartialbox(x1:int, y1:int, w1:int, h1:int, col:int, cutoff:int):void {
 			if (y1 > cutoff) {
-				settrect(x1, y1, w1, 2); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
+				settrect(x1, y1, w1, 2); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a));
 			}
 			if (y1 + h1 - 2 > cutoff){
-				settrect(x1, y1 + h1 - 2, w1, 2); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
+				settrect(x1, y1 + h1 - 2, w1, 2); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a));
 			}
 			if (y1 > cutoff) {
-				settrect(x1, y1, 2, h1); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
+				settrect(x1, y1, 2, h1); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a));
 			}else {
-				settrect(x1, cutoff, 2, h1 - (cutoff - y1)); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
+				settrect(x1, cutoff, 2, h1 - (cutoff - y1)); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a));
 			}
 			if (y1 > cutoff) {
-				settrect(x1 + w1 - 2, y1, 2, h1); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
+				settrect(x1 + w1 - 2, y1, 2, h1); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a));
 			}else {
-				settrect(x1 + w1 - 2, cutoff, 2, h1 - (cutoff - y1)); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
+				settrect(x1 + w1 - 2, cutoff, 2, h1 - (cutoff - y1)); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a));
 			}
 		}
 		
 		public static function drawbox(x1:int, y1:int, w1:int, h1:int, col:int):void {
-			settrect(x1, y1, w1, 2); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
-			settrect(x1, y1 + h1 - 2, w1, 2); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
-			settrect(x1, y1, 2, h1); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
-			settrect(x1 + w1 - 2, y1, 2, h1); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b));
+			settrect(x1, y1, w1, 2); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a));
+			settrect(x1, y1 + h1 - 2, w1, 2); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a));
+			settrect(x1, y1, 2, h1); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a));
+			settrect(x1 + w1 - 2, y1, 2, h1); backbuffer.fillRect(trect, RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a));
 		}
 		
 		public static function cls():void {
@@ -930,17 +943,33 @@
 		
 		public static function fillrect(x1:int, y1:int, w1:int, h1:int, t:int):void {
 			settrect(x1, y1, w1, h1);
-			backbuffer.fillRect(trect, RGB(pal[t].r, pal[t].g, pal[t].b));
+
+			worldShape.graphics.clear();
+			worldShape.graphics.beginFill(RGB(pal[t].r, pal[t].g, pal[t].b), pal[t].a / 255.0);
+			worldShape.graphics.drawRect(0, 0, w1, h1);
+			worldShape.graphics.endFill();
+
+			worldMatrix.translate (x1, y1);
+			backbuffer.draw(worldShape, worldMatrix);
+			worldMatrix.translate (-x1, -y1);
 		}
 		
 		public static function drawbuffericon(x:int, y:int, t:int):void {
-			settpoint(x, y);
-			buffer.copyPixels(icons[t], icons_rect, tpoint);
+			//settpoint(x, y);
+			//buffer.copyPixels(icons[t], icons_rect, tpoint);
+
+			worldMatrix.translate (x, y);
+			buffer.draw(icons[t], worldMatrix);
+			worldMatrix.translate (-x, -y);
 		}
 
 		public static function drawicon(x:int, y:int, t:int):void {
-			settpoint(x, y);
-			backbuffer.copyPixels(icons[t], icons_rect, tpoint);
+			//settpoint(x, y);
+			//backbuffer.copyPixels(icons[t], icons_rect, tpoint);
+
+			worldMatrix.translate (x, y);
+			backbuffer.draw(icons[t], worldMatrix);
+			worldMatrix.translate (-x, -y);
 		}
 		
 		//Text Functions
@@ -992,21 +1021,22 @@
 				//Cache the text
 				cacheindex = cachedtext.length;
 				cachedtextindex[cachelabel] = cacheindex;
-				cachedtext.push(new BitmapData(len(t), 22, true, 0));
+				cachedtext.push(new BitmapData(len(t), 22, true, 0x00000000));
 				cachedrect.push(new Rectangle(0, 0, len(t), 22));
 				
 				printoncache(0, 0, t, col, false, shadow);
 			}
 			
 			cacheindex = cachedtextindex[cachelabel];
-			settpoint(x, y);
-			backbuffer.copyPixels(cachedtext[cacheindex], cachedrect[cacheindex], tpoint);
+			worldMatrix.translate(x, y);
+			backbuffer.draw(cachedtext[cacheindex], worldMatrix);
+			worldMatrix.translate(-x, -y);
 		}
 		
 		public static function printoncache(x:int, y:int, t:String, col:int, cen:Boolean = false, shadow:Boolean=false):void {
 			y -= 3;
 			
-			tf_1.textColor = RGB(pal[col].r, pal[col].g, pal[col].b);
+			tf_1.textColor = RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a);
 			tf_1.text = t;
 			if (cen) x = screenwidthmid - (tf_1.textWidth / 2) + x;
 			
@@ -1019,7 +1049,7 @@
 			}
 			
 			shapematrix.translate(x, y);
-			tf_1.textColor = RGB(pal[col].r, pal[col].g, pal[col].b);
+			tf_1.textColor = RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a);
 			cachedtext[cacheindex].draw(tf_1, shapematrix);
 			
 			shapematrix.translate(-x, -y);
@@ -1028,7 +1058,7 @@
 		public static function normalprint(x:int, y:int, t:String, col:int, cen:Boolean = false, shadow:Boolean=false):void {
 			y -= 3;
 			
-			tf_1.textColor = RGB(pal[col].r, pal[col].g, pal[col].b);
+			tf_1.textColor = RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a);
 			tf_1.text = t;
 			if (cen) x = screenwidthmid - (tf_1.textWidth / 2) + x;
 			
@@ -1041,7 +1071,7 @@
 			}
 			
 			shapematrix.translate(x, y);
-			tf_1.textColor = RGB(pal[col].r, pal[col].g, pal[col].b);
+			tf_1.textColor = RGB(pal[col].r, pal[col].g, pal[col].b, pal[col].a);
 			backbuffer.draw(tf_1, shapematrix);
 			
 			shapematrix.translate(-x, -y);
@@ -1139,8 +1169,8 @@
 			}
 		}
 		
-		public static function RGB(red:Number,green:Number,blue:Number):Number{
-			return (blue | (green << 8) | (red << 16))
+		public static function RGB(red:Number,green:Number,blue:Number,alpha:Number=255):Number{
+			return (blue | (green << 8) | (red << 16) | (alpha << 24))
 		}
 		
 		//Render functions
@@ -1151,8 +1181,8 @@
 		
 		public static function render():void {
 			if (control.test) {
-				settrect(0, 0, screenwidth, 10);
-				backbuffer.fillRect(trect, 0x000000);
+				settrect(0, 0, screenwidth, screenheight);
+				backbuffer.fillRect(trect, 0xFFFF00FF);
 				print(5, 0, control.teststring, 2, false);
 			}
 			
@@ -1199,6 +1229,9 @@
 		//Tempshape
 		public static var tempshape:Shape = new Shape();
 		public static var shapematrix:Matrix = new Matrix();
+		public static var worldMatrix:Matrix = new Matrix();
+		public static var diffuseColor:ColorTransform = new ColorTransform();
+		public static var worldShape:Shape = new Shape();
 		
 		[Embed(source = "graphics/font.swf", symbol = "FFF Aquarius Bold Condensed")]
 		public static var ttffont:Class;
