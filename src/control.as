@@ -215,7 +215,7 @@
 			notelength = 1;
 			currentinstrument = 0;
 			
-			boxcount = 16;
+			boxcount = 32;
 			barcount = 4;
 			
 			programsettings = SharedObject.getLocal("boscaceoil_settings");
@@ -1363,9 +1363,9 @@
 		{
 			changetab(MENUTAB_FILE);
 			bpm = 120;
-			boxcount = 16;
+			boxcount = 32;
 			barcount = 4;
-			doublesize = false;
+			doublesize = (boxcount > 16);
 			effectvalue = 0;
 			effecttype = 0;
 			updateeffects();
@@ -2024,7 +2024,7 @@
 		public static var boxsize:int, boxcount:int;
 		public static var barsize:int, barcount:int;
 		public static var notelength:int;
-		public static var doublesize:Boolean;
+		public static var doublesize:Boolean = true;
 		public static var arrangescrolldelay:int = 0;
 		
 		public static var barposition:Number = 0;
