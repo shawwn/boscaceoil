@@ -169,13 +169,8 @@
 		}
 		
 		public static function updateboxsize():void {
-			if (control.doublesize) {
-				control.boxsize = (screenwidth - 60) / 32;
-				control.barsize = control.boxsize * control.barcount;
-			}else{
-				control.boxsize = (screenwidth - 60) / 16;
-				control.barsize = control.boxsize * control.barcount;
-			}
+			control.boxsize = (screenwidth - 60) / (16 * control.multsize);
+			control.barsize = control.boxsize * control.barcount;
 		}
 
 		public static function lastchar(s:String):String {
@@ -216,14 +211,10 @@
 			}
 			
 			//Reduced patternsize? Just draw over it!
-			if (control.doublesize) {
-				if (control.boxcount < 32) {
-					fillrect(42 + (control.boxcount * control.boxsize), pianorollposition + linesize, screenwidth, linesize*patterneditorheight, 103 + (control.musicbox[control.currentbox].palette*0 * 10));
-				}
-			}else{
-				if (control.boxcount < 16) {
-					fillrect(42 + (control.boxcount * control.boxsize), pianorollposition + linesize, screenwidth, linesize*patterneditorheight, 103 + (control.musicbox[control.currentbox].palette*0 * 10));
-				}
+			if (control.boxcount < 16*control.multsize) {
+				var color:int = 103 + (control.musicbox[control.currentbox].palette*0 * 10);
+				color = 12; // Solid black
+				fillrect(42 + (control.boxcount * control.boxsize), pianorollposition + linesize, screenwidth, linesize*patterneditorheight, color);
 			}
 			
 			//Note names
@@ -269,18 +260,10 @@
 			}
 			
 			//Scroll bar
-			if(control.doublesize){
-				if (control.musicbox[control.currentbox].recordfilter == 1) {				
-					fillrect((42 + (32 * control.boxsize)), pianorollposition + linesize, 40, linesize * patterneditorheight, 9);
-				}else {
-					fillrect((42 + (32 * control.boxsize)), pianorollposition + linesize, 40, linesize * patterneditorheight, 4);
-				}
+			if (control.musicbox[control.currentbox].recordfilter == 1) {				
+				fillrect((42 + (control.multsize * 16 * control.boxsize)), pianorollposition + linesize, 40, linesize * patterneditorheight, 9);
 			}else {
-				if (control.musicbox[control.currentbox].recordfilter == 1) {				
-					fillrect((42 + (16 * control.boxsize)), pianorollposition + linesize, 40, linesize * patterneditorheight, 9);
-				}else {
-					fillrect((42 + (16 * control.boxsize)), pianorollposition + linesize, 40, linesize * patterneditorheight, 4);
-				}
+				fillrect((42 + (control.multsize * 16 * control.boxsize)), pianorollposition + linesize, 40, linesize * patterneditorheight, 4);
 			}
 			
 			//Octave bars
@@ -321,14 +304,8 @@
 							fillrect(42 + (i * control.boxsize) + control.drawnotelength - 4,  screenheight - linesize - (control.drawnoteposition * linesize), 4, linesize, 104 + (control.musicbox[control.currentbox].palette*0 * 10));
 							
 							tempstring = String(int(control.musicbox[control.currentbox].notes[j].y))
-							if (control.doublesize) {
-								if (control.musicbox[control.currentbox].notes[j].y + control.musicbox[control.currentbox].notes[j].width > 32) {
-									print(42 + (i * control.boxsize), screenheight - linesize - (control.drawnoteposition * linesize), tempstring, 12);
-								}
-							}else {
-								if (control.musicbox[control.currentbox].notes[j].y + control.musicbox[control.currentbox].notes[j].width > 16) {
-									print(42 + (i * control.boxsize), screenheight - linesize - (control.drawnoteposition * linesize), tempstring, 12);
-								}
+							if (control.musicbox[control.currentbox].notes[j].y + control.musicbox[control.currentbox].notes[j].width > control.multsize*16) {
+								print(42 + (i * control.boxsize), screenheight - linesize - (control.drawnoteposition * linesize), tempstring, 12);
 							}
 						}
 					}
@@ -348,11 +325,7 @@
 			//Draw the cursor
 			if (control.cursorx > -1 && control.cursory > -1) {
 				if (control.musicbox[control.currentbox].start + control.cursory - 1 == -1) {
-					if (control.doublesize) {
-						drawbox(40 + (4 * control.boxsize), gfx.screenheight - linesize - (control.cursory * linesize), control.boxsize * 24, linesize, 21);
-					}else{
-						drawbox(40 + (2 * control.boxsize), gfx.screenheight - linesize - (control.cursory * linesize), control.boxsize * 12, linesize, 21);
-					}
+					drawbox(40 + (control.multsize * 2 * control.boxsize), gfx.screenheight - linesize - (control.cursory * linesize), control.boxsize * control.multsize * 12, linesize, 21);
 				}else {
 					if (control.cursory == notesonscreen - 1) {
 						//draw partial cursor
@@ -451,7 +424,7 @@
 					zoomoffset = forcezoom / 2;
 				}
 				
-				if (control.doublesize) zoomoffset = zoomoffset / 2;
+				zoomoffset = zoomoffset / control.multsize;
 				
 				fillrect(xp, yp, temppatternwidth, 24, 100 + (temppal * 10));
 				fillrect(xp + 44, yp + 2, temppatternwidth - 46, 20, 101 + (temppal * 10));

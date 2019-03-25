@@ -383,7 +383,7 @@ package {
 				signature = 4;
 				numnotes = 16;
 			}
-			if (numnotes > 16) control.doublesize = true;
+			control.multsize = (numnotes + 15) / 16;
 			
 			var boxsize:int = resolution;
 			numpatterns = getsonglength();

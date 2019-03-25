@@ -215,8 +215,9 @@
 			notelength = 1;
 			currentinstrument = 0;
 			
-			boxcount = 32;
+			boxcount = 64;
 			barcount = 4;
+			multsize = (boxcount + 15) / 16;
 			
 			programsettings = SharedObject.getLocal("boscaceoil_settings");
 			
@@ -1363,9 +1364,9 @@
 		{
 			changetab(MENUTAB_FILE);
 			bpm = 120;
-			boxcount = 32;
+			boxcount = 64;
 			barcount = 4;
-			doublesize = (boxcount > 16);
+			multsize = (boxcount + 15) / 16;
 			effectvalue = 0;
 			effecttype = 0;
 			updateeffects();
@@ -1406,7 +1407,7 @@
 				bpm = readfilestream();
 				_driver.bpm = bpm;
 				boxcount = readfilestream();
-				doublesize = boxcount > 16;
+				multsize = (boxcount + 15) / 16;
 				barcount = readfilestream();
 				numinstrument = readfilestream();
 				for (i = 0; i < numinstrument; i++)
@@ -1486,7 +1487,7 @@
 				bpm = readfilestream();
 				_driver.bpm = bpm;
 				boxcount = readfilestream();
-				doublesize = boxcount > 16;
+				multsize = (boxcount + 15) / 16;
 				barcount = readfilestream();
 				numinstrument = readfilestream();
 				for (i = 0; i < numinstrument; i++)
@@ -1554,7 +1555,7 @@
 				effecttype = 0;
 				effectvalue = 0;
 				boxcount = readfilestream();
-				doublesize = boxcount > 16;
+				multsize = (boxcount + 15) / 16;
 				barcount = readfilestream();
 				numinstrument = readfilestream();
 				for (i = 0; i < numinstrument; i++)
@@ -2024,7 +2025,7 @@
 		public static var boxsize:int, boxcount:int;
 		public static var barsize:int, barcount:int;
 		public static var notelength:int;
-		public static var doublesize:Boolean = true;
+		public static var multsize:int;
 		public static var arrangescrolldelay:int = 0;
 		
 		public static var barposition:Number = 0;
