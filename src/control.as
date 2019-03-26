@@ -582,128 +582,132 @@
 		
 		public static function createdrumkit(t:int):void
 		{
-			//Create Drumkit t at index
-			switch (t)
-			{
-			case 0: 
-				//Simple
-				drumkit[0].kitname = "Simple Drumkit";
-				adddrumkitnote(0, "Bass Drum 1", "valsound.percus1", 30);
-				adddrumkitnote(0, "Bass Drum 2", "valsound.percus13", 32);
-				adddrumkitnote(0, "Bass Drum 3", "valsound.percus3", 30);
-				adddrumkitnote(0, "Snare Drum", "valsound.percus30", 20);
-				adddrumkitnote(0, "Snare Drum 2", "valsound.percus29", 48);
-				adddrumkitnote(0, "Open Hi-Hat", "valsound.percus17", 60);
-				adddrumkitnote(0, "Closed Hi-Hat", "valsound.percus23", 72);
-				adddrumkitnote(0, "Crash Cymbal", "valsound.percus8", 48);
-				break;
-			case 1: 
-				//SiON Kit
-				drumkit[1].kitname = "SiON Drumkit";
-				adddrumkitnote(1, "Bass Drum 2", "valsound.percus1", 30);
-				adddrumkitnote(1, "Bass Drum 3 o1f", "valsound.percus2");
-				adddrumkitnote(1, "RUFINA BD o2c", "valsound.percus3", 30);
-				adddrumkitnote(1, "B.D.(-vBend)", "valsound.percus4");
-				adddrumkitnote(1, "BD808_2(-vBend)", "valsound.percus5");
-				adddrumkitnote(1, "Cho cho 3 (o2e)", "valsound.percus6");
-				adddrumkitnote(1, "Cow-Bell 1", "valsound.percus7");
-				adddrumkitnote(1, "Crash Cymbal (noise)", "valsound.percus8", 48);
-				adddrumkitnote(1, "Crash Noise", "valsound.percus9");
-				adddrumkitnote(1, "Crash Noise Short", "valsound.percus10");
-				adddrumkitnote(1, "ETHNIC Percus.0", "valsound.percus11");
-				adddrumkitnote(1, "ETHNIC Percus.1", "valsound.percus12");
-				adddrumkitnote(1, "Heavy BD.", "valsound.percus13", 32);
-				adddrumkitnote(1, "Heavy BD2", "valsound.percus14");
-				adddrumkitnote(1, "Heavy SD1", "valsound.percus15");
-				adddrumkitnote(1, "Hi-Hat close 5_", "valsound.percus16");
-				adddrumkitnote(1, "Hi-Hat close 4", "valsound.percus17");
-				adddrumkitnote(1, "Hi-Hat close 5", "valsound.percus18");
-				adddrumkitnote(1, "Hi-Hat Close 6 -808-", "valsound.percus19");
-				adddrumkitnote(1, "Hi-hat #7 Metal o3-6", "valsound.percus20");
-				adddrumkitnote(1, "Hi-Hat Close #8 o4", "valsound.percus21");
-				adddrumkitnote(1, "Hi-hat Open o4e-g+", "valsound.percus22");
-				adddrumkitnote(1, "Open-hat2 Metal o4c-", "valsound.percus23");
-				adddrumkitnote(1, "Open-hat3 Metal", "valsound.percus24");
-				adddrumkitnote(1, "Hi-Hat Open #4 o4f", "valsound.percus25");
-				adddrumkitnote(1, "Metal ride o4c or o5c", "valsound.percus26");
-				adddrumkitnote(1, "Rim Shot #1 o3c", "valsound.percus27");
-				adddrumkitnote(1, "Snare Drum Light", "valsound.percus28");
-				adddrumkitnote(1, "Snare Drum Lighter", "valsound.percus29");
-				adddrumkitnote(1, "Snare Drum 808 o2-o3", "valsound.percus30", 20);
-				adddrumkitnote(1, "Snare4 -808type- o2", "valsound.percus31");
-				adddrumkitnote(1, "Snare5 o1-2(Franger)", "valsound.percus32");
-				adddrumkitnote(1, "Tom (old)", "valsound.percus33");
-				adddrumkitnote(1, "Synth tom 2 algo 3", "valsound.percus34");
-				adddrumkitnote(1, "Synth (Noisy) Tom #3", "valsound.percus35");
-				adddrumkitnote(1, "Synth Tom #3", "valsound.percus36");
-				adddrumkitnote(1, "Synth -DX7- Tom #4", "valsound.percus37");
-				adddrumkitnote(1, "Triangle 1 o5c", "valsound.percus38");
-				break;
-			case 2: 
-				//MIDI DRUMS
-				drumkit[2].kitname = "Midi Drumkit";
-				adddrumkitnote(2, "Seq Click H", "midi.drum24", 24);
-				adddrumkitnote(2, "Brush Tap", "midi.drum25", 25);
-				adddrumkitnote(2, "Brush Swirl", "midi.drum26", 26);
-				adddrumkitnote(2, "Brush Slap", "midi.drum27", 27);
-				adddrumkitnote(2, "Brush Tap Swirl", "midi.drum28", 28);
-				adddrumkitnote(2, "Snare Roll", "midi.drum29");
-				adddrumkitnote(2, "Castanet", "midi.drum32");
-				adddrumkitnote(2, "Snare L", "midi.drum31");
-				adddrumkitnote(2, "Sticks", "midi.drum32");
-				adddrumkitnote(2, "Bass Drum L", "midi.drum33");
-				adddrumkitnote(2, "Open Rim Shot", "midi.drum34");
-				adddrumkitnote(2, "Bass Drum M", "midi.drum35");
-				adddrumkitnote(2, "Bass Drum H", "midi.drum36");
-				adddrumkitnote(2, "Closed Rim Shot", "midi.drum37");
-				adddrumkitnote(2, "Snare M", "midi.drum38");
-				adddrumkitnote(2, "Hand Clap", "midi.drum39");
-				adddrumkitnote(2, "Snare H", "midi.drum42");
-				adddrumkitnote(2, "Floor Tom L", "midi.drum41");
-				adddrumkitnote(2, "Hi-Hat Closed", "midi.drum42");
-				adddrumkitnote(2, "Floor Tom H", "midi.drum43");
-				adddrumkitnote(2, "Hi-Hat Pedal", "midi.drum44");
-				adddrumkitnote(2, "Low Tom", "midi.drum45");
-				adddrumkitnote(2, "Hi-Hat Open", "midi.drum46");
-				adddrumkitnote(2, "Mid Tom L", "midi.drum47");
-				adddrumkitnote(2, "Mid Tom H", "midi.drum48");
-				adddrumkitnote(2, "Crash Cymbal 1", "midi.drum49");
-				adddrumkitnote(2, "High Tom", "midi.drum52");
-				adddrumkitnote(2, "Ride Cymbal 1", "midi.drum51");
-				adddrumkitnote(2, "Chinese Cymbal", "midi.drum52");
-				adddrumkitnote(2, "Ride Cymbal Cup", "midi.drum53");
-				adddrumkitnote(2, "Tambourine", "midi.drum54");
-				adddrumkitnote(2, "Splash Cymbal", "midi.drum55");
-				adddrumkitnote(2, "Cowbell", "midi.drum56");
-				adddrumkitnote(2, "Crash Cymbal 2", "midi.drum57");
-				adddrumkitnote(2, "Vibraslap", "midi.drum58");
-				adddrumkitnote(2, "Ride Cymbal 2", "midi.drum59");
-				adddrumkitnote(2, "Bongo H", "midi.drum62");
-				adddrumkitnote(2, "Bongo L", "midi.drum61");
-				adddrumkitnote(2, "Conga H Mute", "midi.drum62");
-				adddrumkitnote(2, "Conga H Open", "midi.drum63");
-				adddrumkitnote(2, "Conga L", "midi.drum64");
-				adddrumkitnote(2, "Timbale H", "midi.drum65");
-				adddrumkitnote(2, "Timbale L", "midi.drum66");
-				adddrumkitnote(2, "Agogo H", "midi.drum67");
-				adddrumkitnote(2, "Agogo L", "midi.drum68");
-				adddrumkitnote(2, "Cabasa", "midi.drum69");
-				adddrumkitnote(2, "Maracas", "midi.drum72");
-				adddrumkitnote(2, "Samba Whistle H", "midi.drum71");
-				adddrumkitnote(2, "Samba Whistle L", "midi.drum72");
-				adddrumkitnote(2, "Guiro Short", "midi.drum73");
-				adddrumkitnote(2, "Guiro Long", "midi.drum74");
-				adddrumkitnote(2, "Claves", "midi.drum75");
-				adddrumkitnote(2, "Wood Block H", "midi.drum76");
-				adddrumkitnote(2, "Wood Block L", "midi.drum77");
-				adddrumkitnote(2, "Cuica Mute", "midi.drum78");
-				adddrumkitnote(2, "Cuica Open", "midi.drum79");
-				adddrumkitnote(2, "Triangle Mute", "midi.drum80");
-				adddrumkitnote(2, "Triangle Open", "midi.drum81");
-				adddrumkitnote(2, "Shaker", "midi.drum82");
-				adddrumkitnote(2, "Jingle Bells", "midi.drum83");
-				adddrumkitnote(2, "Bell Tree", "midi.drum84");
-				break;
+			var i:int = 0;
+			var k:int = 144;
+			while (i < k) {
+				//Create Drumkit t at index
+				switch (t)
+				{
+					case 0:
+						//Simple
+						drumkit[0].kitname = "Simple Drumkit";
+						if (i++ < k) adddrumkitnote(0, "Bass Drum 1", "valsound.percus1", 30);
+						if (i++ < k) adddrumkitnote(0, "Bass Drum 2", "valsound.percus13", 32);
+						if (i++ < k) adddrumkitnote(0, "Bass Drum 3", "valsound.percus3", 30);
+						if (i++ < k) adddrumkitnote(0, "Snare Drum", "valsound.percus30", 20);
+						if (i++ < k) adddrumkitnote(0, "Snare Drum 2", "valsound.percus29", 48);
+						if (i++ < k) adddrumkitnote(0, "Open Hi-Hat", "valsound.percus17", 60);
+						if (i++ < k) adddrumkitnote(0, "Closed Hi-Hat", "valsound.percus23", 72);
+						if (i++ < k) adddrumkitnote(0, "Crash Cymbal", "valsound.percus8", 48);
+						break;
+					case 1:
+						//SiON Kit
+						drumkit[1].kitname = "SiON Drumkit";
+						if (i++ < k) adddrumkitnote(1, "Bass Drum 2", "valsound.percus1", 30);
+						if (i++ < k) adddrumkitnote(1, "Bass Drum 3 o1f", "valsound.percus2");
+						if (i++ < k) adddrumkitnote(1, "RUFINA BD o2c", "valsound.percus3", 30);
+						if (i++ < k) adddrumkitnote(1, "B.D.(-vBend)", "valsound.percus4");
+						if (i++ < k) adddrumkitnote(1, "BD808_2(-vBend)", "valsound.percus5");
+						if (i++ < k) adddrumkitnote(1, "Cho cho 3 (o2e)", "valsound.percus6");
+						if (i++ < k) adddrumkitnote(1, "Cow-Bell 1", "valsound.percus7");
+						if (i++ < k) adddrumkitnote(1, "Crash Cymbal (noise)", "valsound.percus8", 48);
+						if (i++ < k) adddrumkitnote(1, "Crash Noise", "valsound.percus9");
+						if (i++ < k) adddrumkitnote(1, "Crash Noise Short", "valsound.percus10");
+						if (i++ < k) adddrumkitnote(1, "ETHNIC Percus.0", "valsound.percus11");
+						if (i++ < k) adddrumkitnote(1, "ETHNIC Percus.1", "valsound.percus12");
+						if (i++ < k) adddrumkitnote(1, "Heavy BD.", "valsound.percus13", 32);
+						if (i++ < k) adddrumkitnote(1, "Heavy BD2", "valsound.percus14");
+						if (i++ < k) adddrumkitnote(1, "Heavy SD1", "valsound.percus15");
+						if (i++ < k) adddrumkitnote(1, "Hi-Hat close 5_", "valsound.percus16");
+						if (i++ < k) adddrumkitnote(1, "Hi-Hat close 4", "valsound.percus17");
+						if (i++ < k) adddrumkitnote(1, "Hi-Hat close 5", "valsound.percus18");
+						if (i++ < k) adddrumkitnote(1, "Hi-Hat Close 6 -808-", "valsound.percus19");
+						if (i++ < k) adddrumkitnote(1, "Hi-hat #7 Metal o3-6", "valsound.percus20");
+						if (i++ < k) adddrumkitnote(1, "Hi-Hat Close #8 o4", "valsound.percus21");
+						if (i++ < k) adddrumkitnote(1, "Hi-hat Open o4e-g+", "valsound.percus22");
+						if (i++ < k) adddrumkitnote(1, "Open-hat2 Metal o4c-", "valsound.percus23");
+						if (i++ < k) adddrumkitnote(1, "Open-hat3 Metal", "valsound.percus24");
+						if (i++ < k) adddrumkitnote(1, "Hi-Hat Open #4 o4f", "valsound.percus25");
+						if (i++ < k) adddrumkitnote(1, "Metal ride o4c or o5c", "valsound.percus26");
+						if (i++ < k) adddrumkitnote(1, "Rim Shot #1 o3c", "valsound.percus27");
+						if (i++ < k) adddrumkitnote(1, "Snare Drum Light", "valsound.percus28");
+						if (i++ < k) adddrumkitnote(1, "Snare Drum Lighter", "valsound.percus29");
+						if (i++ < k) adddrumkitnote(1, "Snare Drum 808 o2-o3", "valsound.percus30", 20);
+						if (i++ < k) adddrumkitnote(1, "Snare4 -808type- o2", "valsound.percus31");
+						if (i++ < k) adddrumkitnote(1, "Snare5 o1-2(Franger)", "valsound.percus32");
+						if (i++ < k) adddrumkitnote(1, "Tom (old)", "valsound.percus33");
+						if (i++ < k) adddrumkitnote(1, "Synth tom 2 algo 3", "valsound.percus34");
+						if (i++ < k) adddrumkitnote(1, "Synth (Noisy) Tom #3", "valsound.percus35");
+						if (i++ < k) adddrumkitnote(1, "Synth Tom #3", "valsound.percus36");
+						if (i++ < k) adddrumkitnote(1, "Synth -DX7- Tom #4", "valsound.percus37");
+						if (i++ < k) adddrumkitnote(1, "Triangle 1 o5c", "valsound.percus38");
+						break;
+					case 2:
+						//MIDI DRUMS
+						drumkit[2].kitname = "Midi Drumkit";
+						if (i++ < k) adddrumkitnote(2, "Seq Click H", "midi.drum24", 24);
+						if (i++ < k) adddrumkitnote(2, "Brush Tap", "midi.drum25", 25);
+						if (i++ < k) adddrumkitnote(2, "Brush Swirl", "midi.drum26", 26);
+						if (i++ < k) adddrumkitnote(2, "Brush Slap", "midi.drum27", 27);
+						if (i++ < k) adddrumkitnote(2, "Brush Tap Swirl", "midi.drum28", 28);
+						if (i++ < k) adddrumkitnote(2, "Snare Roll", "midi.drum29");
+						if (i++ < k) adddrumkitnote(2, "Castanet", "midi.drum32");
+						if (i++ < k) adddrumkitnote(2, "Snare L", "midi.drum31");
+						if (i++ < k) adddrumkitnote(2, "Sticks", "midi.drum32");
+						if (i++ < k) adddrumkitnote(2, "Bass Drum L", "midi.drum33");
+						if (i++ < k) adddrumkitnote(2, "Open Rim Shot", "midi.drum34");
+						if (i++ < k) adddrumkitnote(2, "Bass Drum M", "midi.drum35");
+						if (i++ < k) adddrumkitnote(2, "Bass Drum H", "midi.drum36");
+						if (i++ < k) adddrumkitnote(2, "Closed Rim Shot", "midi.drum37");
+						if (i++ < k) adddrumkitnote(2, "Snare M", "midi.drum38");
+						if (i++ < k) adddrumkitnote(2, "Hand Clap", "midi.drum39");
+						if (i++ < k) adddrumkitnote(2, "Snare H", "midi.drum42");
+						if (i++ < k) adddrumkitnote(2, "Floor Tom L", "midi.drum41");
+						if (i++ < k) adddrumkitnote(2, "Hi-Hat Closed", "midi.drum42");
+						if (i++ < k) adddrumkitnote(2, "Floor Tom H", "midi.drum43");
+						if (i++ < k) adddrumkitnote(2, "Hi-Hat Pedal", "midi.drum44");
+						if (i++ < k) adddrumkitnote(2, "Low Tom", "midi.drum45");
+						if (i++ < k) adddrumkitnote(2, "Hi-Hat Open", "midi.drum46");
+						if (i++ < k) adddrumkitnote(2, "Mid Tom L", "midi.drum47");
+						if (i++ < k) adddrumkitnote(2, "Mid Tom H", "midi.drum48");
+						if (i++ < k) adddrumkitnote(2, "Crash Cymbal 1", "midi.drum49");
+						if (i++ < k) adddrumkitnote(2, "High Tom", "midi.drum52");
+						if (i++ < k) adddrumkitnote(2, "Ride Cymbal 1", "midi.drum51");
+						if (i++ < k) adddrumkitnote(2, "Chinese Cymbal", "midi.drum52");
+						if (i++ < k) adddrumkitnote(2, "Ride Cymbal Cup", "midi.drum53");
+						if (i++ < k) adddrumkitnote(2, "Tambourine", "midi.drum54");
+						if (i++ < k) adddrumkitnote(2, "Splash Cymbal", "midi.drum55");
+						if (i++ < k) adddrumkitnote(2, "Cowbell", "midi.drum56");
+						if (i++ < k) adddrumkitnote(2, "Crash Cymbal 2", "midi.drum57");
+						if (i++ < k) adddrumkitnote(2, "Vibraslap", "midi.drum58");
+						if (i++ < k) adddrumkitnote(2, "Ride Cymbal 2", "midi.drum59");
+						if (i++ < k) adddrumkitnote(2, "Bongo H", "midi.drum62");
+						if (i++ < k) adddrumkitnote(2, "Bongo L", "midi.drum61");
+						if (i++ < k) adddrumkitnote(2, "Conga H Mute", "midi.drum62");
+						if (i++ < k) adddrumkitnote(2, "Conga H Open", "midi.drum63");
+						if (i++ < k) adddrumkitnote(2, "Conga L", "midi.drum64");
+						if (i++ < k) adddrumkitnote(2, "Timbale H", "midi.drum65");
+						if (i++ < k) adddrumkitnote(2, "Timbale L", "midi.drum66");
+						if (i++ < k) adddrumkitnote(2, "Agogo H", "midi.drum67");
+						if (i++ < k) adddrumkitnote(2, "Agogo L", "midi.drum68");
+						if (i++ < k) adddrumkitnote(2, "Cabasa", "midi.drum69");
+						if (i++ < k) adddrumkitnote(2, "Maracas", "midi.drum72");
+						if (i++ < k) adddrumkitnote(2, "Samba Whistle H", "midi.drum71");
+						if (i++ < k) adddrumkitnote(2, "Samba Whistle L", "midi.drum72");
+						if (i++ < k) adddrumkitnote(2, "Guiro Short", "midi.drum73");
+						if (i++ < k) adddrumkitnote(2, "Guiro Long", "midi.drum74");
+						if (i++ < k) adddrumkitnote(2, "Claves", "midi.drum75");
+						if (i++ < k) adddrumkitnote(2, "Wood Block H", "midi.drum76");
+						if (i++ < k) adddrumkitnote(2, "Wood Block L", "midi.drum77");
+						if (i++ < k) adddrumkitnote(2, "Cuica Mute", "midi.drum78");
+						if (i++ < k) adddrumkitnote(2, "Cuica Open", "midi.drum79");
+						if (i++ < k) adddrumkitnote(2, "Triangle Mute", "midi.drum80");
+						if (i++ < k) adddrumkitnote(2, "Triangle Open", "midi.drum81");
+						if (i++ < k) adddrumkitnote(2, "Shaker", "midi.drum82");
+						if (i++ < k) adddrumkitnote(2, "Jingle Bells", "midi.drum83");
+						if (i++ < k) adddrumkitnote(2, "Bell Tree", "midi.drum84");
+						break;
+				}
 			}
 		}
 		
