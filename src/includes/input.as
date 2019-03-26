@@ -734,10 +734,12 @@
 		}
 		guiclass.helpcondition_set = "nothing";
 	}
-	
+
+	/*
 	CONFIG::desktop {
 		if (key.isDown(Keyboard.ESCAPE)) {
 			NativeApplication.nativeApplication.exit(0);
 		}
 	}
+	*/
 }
