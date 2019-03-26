@@ -277,16 +277,29 @@ package
 		
 		public function _input():void
 		{
+			var x:int;
+			var y:int;
 			if (gfx.scalemode == 1)
 			{
-				control.mx = mouseX / 1.5;
-				control.my = mouseY / 1.5;
+				x = mouseX / 1.5;
+				y = mouseY / 1.5;
 			}
 			else
 			{
-				control.mx = mouseX;
-				control.my = mouseY;
+				x = mouseX;
+				y = mouseY;
 			}
+			if (!control.mset) {
+				control.mset = true;
+				control.mx = x;
+				control.my = y;
+			}
+			control.px = control.mx;
+			control.py = control.my;
+			control.mx = x;
+			control.my = y;
+			control.dx = control.mx - control.px;
+			control.dy = control.my - control.py;
 			
 			input(key);
 		}

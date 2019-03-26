@@ -1986,7 +1986,15 @@
 				guiclass.changetab(newtab);
 			}
 		}
-		
+
+		public static function iskeydown(key:uint):Boolean { return ispressed[key]; }
+		public static function waskeydown(key:uint):Boolean { return waspressed[key]; }
+		public static function iskeyup(key:uint):Boolean { return !iskeydown(key); }
+		public static function waskeyup(key:uint):Boolean { return !waskeyup(key); }
+		public static function keypressed(key:uint):Boolean { return iskeydown(key) && !waskeydown(key); }
+		public static function keyreleased(key:uint):Boolean { return !iskeydown(key) && waskeydown(key); }
+
+
 		CONFIG::desktop
 		{
 			public static var file:File, stream:FileStream;
@@ -2000,8 +2008,10 @@
 		public static var fullscreen:Boolean;
 		
 		public static var fullscreentoggleheld:Boolean = false;
-		
-		public static var press_up:Boolean, press_down:Boolean, press_left:Boolean, press_right:Boolean, press_space:Boolean, press_enter:Boolean;
+
+		public static var waspressed:Array = new Array(256);
+		public static var ispressed:Array = new Array(256);
+		public static var press_up:Boolean, press_down:Boolean, press_left:Boolean, press_right:Boolean, press_escape:Boolean, press_space:Boolean, press_enter:Boolean;
 		public static var keypriority:int = 0;
 		public static var keyheld:Boolean = false;
 		;
@@ -2013,6 +2023,9 @@
 		public static var fixmouseclicks:Boolean = false;
 		
 		public static var mx:int, my:int;
+		public static var px:int, py:int;
+		public static var dx:int, dy:int;
+		public static var mset:Boolean;
 		public static var test:Boolean, teststring:String;
 		
 		public static var _driver:SiONDriver;
@@ -2039,6 +2052,7 @@
 		public static var drawnoteposition:int, drawnotelength:int;
 		
 		public static var cursorx:int, cursory:int;
+		public static var cursorxwas:int, cursorywas:int;
 		public static var arrangecurx:int, arrangecury:int;
 		public static var patterncury:int, timelinecurx:int;
 		public static var instrumentcury:int;

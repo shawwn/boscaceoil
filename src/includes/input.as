@@ -16,6 +16,7 @@
 	}
 	
 	control.cursorx = -1; control.cursory = -1; control.notey = -1;
+	control.cursorxwas = -1; control.cursorywas = -1;
 	control.instrumentcury = -1;
 	control.arrangecurx = -1; control.arrangecury = -1;
 	control.patterncury = -1; control.timelinecurx = -1;
@@ -60,11 +61,17 @@
 				if (control.my > gfx.pianorollposition + gfx.linesize && control.my < gfx.pianorollposition + (gfx.linesize * (gfx.patterneditorheight + 1))) {
 					control.cursorx = (control.mx - 40);
 					control.cursorx = (control.cursorx - (control.cursorx % control.boxsize)) / control.boxsize;
+					control.cursorxwas = (control.px - 40);
+					control.cursorxwas = (control.cursorxwas - (control.cursorxwas % control.boxsize)) / control.boxsize;
 					
 					control.cursory = (gfx.screenheight - gfx.linesize) - control.my;
 					control.cursory = 1+ ((control.cursory - (control.cursory % gfx.linesize)) / gfx.linesize);
+					control.cursorywas = (gfx.screenheight - gfx.linesize) - control.py;
+					control.cursorywas = 1+ ((control.cursorywas - (control.cursorywas % gfx.linesize)) / gfx.linesize);
 					if (control.cursorx >= control.boxcount) control.cursorx = control.boxcount - 1;
+					if (control.cursorxwas >= control.boxcount) control.cursorxwas = control.boxcount - 1;
 					if (control.my >= gfx.screenheight - (gfx.linesize)) control.cursory = -1;
+					if (control.py >= gfx.screenheight - (gfx.linesize)) control.cursorywas = -1;
 				}
 			}else if (control.mx <= 40) {
 				if (control.my > gfx.pianorollposition + gfx.linesize && control.my < gfx.pianorollposition + (gfx.linesize * (gfx.patterneditorheight + 1))) {
@@ -132,6 +139,20 @@
 	if (control.cursorx > -1 && control.cursory > -1 && control.currentbox > -1 && !control.clicklist) {
 		if (key.press && control.dragaction == 0) {
 			//Add note 
+
+			if (!key.shiftheld) {
+				//Remove any note in this position
+				if (control.musicbox[control.currentbox].start + ((gfx.patterneditorheight - 1) - control.cursorywas) > -1) {
+					//OLD
+					//control.currentnote = control.pianoroll[control.musicbox[control.currentbox].start + ((gfx.patterneditorheight - 1) - control.cursorywas)];
+					if(control.musicbox[control.currentbox].start + control.cursorywas - 1 > -1){
+						control.currentnote = control.pianoroll[control.musicbox[control.currentbox].start + control.cursorywas - 1];
+					}
+
+					control.musicbox[control.currentbox].removenote(control.cursorxwas, control.currentnote);
+				}
+			}
+
 			if (control.musicbox[control.currentbox].start + control.cursory - 1 == -1) {
 				if (key.click) {
 					//Enable/Disable recording filter for this musicbox
