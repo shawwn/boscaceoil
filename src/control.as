@@ -212,7 +212,7 @@
 			}
 			
 			currentbox = 0;
-			notelength = 1;
+			notelength = 4;
 			currentinstrument = 0;
 			
 			boxcount = 64;
