@@ -1130,29 +1130,31 @@
 				list.item[12] = "WORLD";
 				list.numitems = 13;
 				break;
-			case LIST_INSTRUMENT: 
-				if (voicelist.sublistsize > 15)
+			case LIST_INSTRUMENT:
+			{
+				var perpage:int = 48;
+				if (voicelist.sublistsize > perpage)
 				{
 					//Need to split into several pages
 					//Fix pagenum if it got broken somewhere
-					if ((voicelist.pagenum * 15) > voicelist.sublistsize) voicelist.pagenum = 0;
-					if (voicelist.sublistsize - (voicelist.pagenum * 15) > 15)
+					if ((voicelist.pagenum * perpage) > voicelist.sublistsize) voicelist.pagenum = 0;
+					if (voicelist.sublistsize - (voicelist.pagenum * perpage) > perpage)
 					{
-						for (i = 0; i < 15; i++)
+						for (i = 0; i < perpage; i++)
 						{
-							list.item[i] = voicelist.subname[(voicelist.pagenum * 15) + i];
+							list.item[i] = voicelist.subname[(voicelist.pagenum * perpage) + i];
 						}
-						list.item[15] = ">> Next Page";
+						list.item[perpage] = ">> Next Page";
 						list.numitems = 16;
 					}
 					else
 					{
-						for (i = 0; i < voicelist.sublistsize - (voicelist.pagenum * 15); i++)
+						for (i = 0; i < voicelist.sublistsize - (voicelist.pagenum * perpage); i++)
 						{
-							list.item[i] = voicelist.subname[(voicelist.pagenum * 15) + i];
+							list.item[i] = voicelist.subname[(voicelist.pagenum * perpage) + i];
 						}
-						list.item[voicelist.sublistsize - (voicelist.pagenum * 15)] = "<< First Page";
-						list.numitems = voicelist.sublistsize - (voicelist.pagenum * 15) + 1;
+						list.item[voicelist.sublistsize - (voicelist.pagenum * perpage)] = "<< First Page";
+						list.numitems = voicelist.sublistsize - (voicelist.pagenum * perpage) + 1;
 					}
 				}
 				else
@@ -1164,6 +1166,7 @@
 					}
 					list.numitems = voicelist.sublistsize;
 				}
+			}
 				break;
 			case LIST_MIDIINSTRUMENT: 
 				midilistselection = -1;
