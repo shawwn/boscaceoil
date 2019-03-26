@@ -209,6 +209,10 @@
 			for (i = 0; i < numboxes; i++)
 			{
 				musicbox[i].start = scalesize * 3;
+				if (musicbox[i].start < 0) musicbox[i].start = 0;
+				if (musicbox[i].start > pianorollsize - gfx.notesonscreen) {
+					musicbox[i].start = pianorollsize - gfx.notesonscreen;
+				}
 			}
 			
 			currentbox = 0;
@@ -749,6 +753,10 @@
 			{
 				musicbox[currentbox].start = (scalesize * 4) - 2;
 			}
+			if (musicbox[currentbox].start < 0) musicbox[currentbox].start = 0;
+			if (musicbox[currentbox].start > pianorollsize - gfx.notesonscreen) {
+				musicbox[currentbox].start = pianorollsize - gfx.notesonscreen;
+			}
 			musicbox[currentbox].setnotespan();
 		}
 		
@@ -775,7 +783,11 @@
 			{
 				musicbox[t].start = 0;
 			}
-			
+
+			if (musicbox[t].start < 0) musicbox[t].start = 0;
+			if (musicbox[t].start > pianorollsize - gfx.notesonscreen) {
+				musicbox[t].start = pianorollsize - gfx.notesonscreen;
+			}
 			guiclass.changetab(currenttab);
 		}
 		

@@ -1335,10 +1335,10 @@ package {
 					addbutton(gfx.screenwidth - 164 - tx, (gfx.linespacing * 9) + 8, 150, "BACK", "filetab");
 				break;
 				case control.MENUTAB_ARRANGEMENTS:
-					addbutton(gfx.patternmanagerx + 10, gfx.linespacing + gfx.pianorollposition - 28, gfx.screenwidth - (gfx.patternmanagerx) - 16, "ADD NEW", "addnewpattern");
+					addbutton(gfx.patternmanagerx + 10, gfx.linespacing + gfx.pianorollposition - gfx.buttonheight - 2 + gfx.buttonoffset, gfx.screenwidth - (gfx.patternmanagerx) - 16, "ADD NEW", "addnewpattern");
 				break;
 				case control.MENUTAB_INSTRUMENTS:
-					addbutton(10, gfx.linespacing + gfx.pianorollposition - 28, 264, "ADD NEW INSTRUMENT", "addnewinstrument");
+					addbutton(10, gfx.linespacing + gfx.pianorollposition - gfx.buttonheight - 2 + gfx.buttonoffset, 264, "ADD NEW INSTRUMENT", "addnewinstrument");
 					addminusbutton(706, (gfx.linespacing * 2) + 6, "previousinstrument");
 					addplusbutton(726, (gfx.linespacing * 2) + 6, "nextinstrument");
 				break;

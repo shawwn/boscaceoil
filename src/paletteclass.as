@@ -13,7 +13,21 @@ package {
 			r = r1; g = g1; b = b1; a = a1;
 			fixbounds();
 		}
-		
+
+		public function assign(palette:paletteclass):paletteclass {
+			r = palette.r; g = palette.g; b = palette.b; a = palette.a;
+			fixbounds();
+			return this;
+		}
+
+		public function swap(palette:paletteclass):paletteclass {
+			var tmp:paletteclass = new paletteclass();
+			tmp.assign(palette);
+			palette.assign(this);
+			this.assign(tmp);
+			return this;
+		}
+
 		public function transition(r1:int, g1:int, b1:int, speed:int=5, a1:int=-1):void {
 			if (a1 < 0) { a1 = a; }
 			

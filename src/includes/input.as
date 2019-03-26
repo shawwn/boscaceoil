@@ -159,15 +159,18 @@
 					control.musicbox[control.currentbox].recordfilter = 1 - control.musicbox[control.currentbox].recordfilter;
 				}
 			}else {
-				if(control.musicbox[control.currentbox].start + control.cursory - 1 > -1 &&
-					 control.musicbox[control.currentbox].start + control.cursory - 1 < control.pianorollsize) {
-					control.currentnote = control.pianoroll[control.musicbox[control.currentbox].start + control.cursory - 1];
-					if (control.musicbox[control.currentbox].noteat(control.cursorx, control.currentnote)) {
-						control.musicbox[control.currentbox].removenote(control.cursorx, control.currentnote);
-						control.musicbox[control.currentbox].addnote(control.cursorx, control.currentnote, control.notelength);
+        var box:musicphraseclass = control.musicbox[control.currentbox];
+				if(box.start + control.cursory - 1 > -1 &&
+					 box.start + control.cursory - 1 < control.pianorollsize) {
+					control.currentnote = control.pianoroll[box.start + control.cursory - 1];
+					if (box.noteat(control.cursorx, control.currentnote)) {
+						box.removenote(control.cursorx, control.currentnote);
+						box.addnote(control.cursorx, control.currentnote, control.notelength);
 					}else{
-						control.musicbox[control.currentbox].addnote(control.cursorx, control.currentnote, control.notelength);
+						box.addnote(control.cursorx, control.currentnote, control.notelength);
 					}
+          //box[i].isplayed = true;
+          //control._driver.noteOn(int(box[i].notes[j].x), control.instrument[box[i].instr].voice, int(box[i].notes[j].y));
 				}
 			}
 		}
