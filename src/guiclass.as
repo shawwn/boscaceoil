@@ -5,6 +5,7 @@ package {
 	import flash.events.*;
 	import flash.utils.*;
 	import flash.net.*;
+	import flash.ui.Keyboard;
 	import bigroom.input.KeyPoll;
 	
 	public class guiclass {
@@ -1484,24 +1485,44 @@ package {
 				control.barcount++;
 				if (control.barcount > 256) control.barcount = 256;
 			}else if (currentbutton == "boxcountdown") {
-				control.boxcount--;
+        if (control.iskeydown(Keyboard.SHIFT))
+          control.boxcount -= 1;
+        else if (control.iskeydown(Keyboard.ALTERNATE))
+          control.boxcount -= 16;
+        else
+          control.boxcount -= 4;
 				if (control.boxcount < 1) control.boxcount = 1;
 				control.multsize = (control.boxcount + 15) / 16;
 				gfx.updateboxsize();
 				changetab(control.currenttab);
 			}else if (currentbutton == "boxcountup") {
-				control.boxcount++;
+        if (control.iskeydown(Keyboard.SHIFT))
+          control.boxcount += 1;
+        else if (control.iskeydown(Keyboard.ALTERNATE))
+          control.boxcount += 16;
+        else
+          control.boxcount += 4;
 				if (control.boxcount > 256) control.boxcount = 256;
 				control.multsize = (control.boxcount + 15) / 16;
 				gfx.updateboxsize();
 				changetab(control.currenttab);
 			}else if (currentbutton == "bpmdown") {
-				control.bpm -= 5;
+        if (control.iskeydown(Keyboard.SHIFT))
+          control.bpm -= 1;
+        else if (control.iskeydown(Keyboard.ALTERNATE))
+          control.bpm -= 20;
+        else
+          control.bpm -= 5;
 				if (control.bpm < 10) control.bpm = 10;
 				control._driver.bpm = control.bpm;
 			}else if (currentbutton == "bpmup") {
-				control.bpm += 5;
-				if (control.bpm > 220) control.bpm = 220;
+        if (control.iskeydown(Keyboard.SHIFT))
+          control.bpm += 1;
+        else if (control.iskeydown(Keyboard.ALTERNATE))
+          control.bpm += 20;
+        else
+          control.bpm += 5;
+				if (control.bpm > 5*220) control.bpm = 5*220;
 				control._driver.bpm = control.bpm;
 			}else if (currentbutton == "bufferlist") {
 				control.filllist(control.LIST_BUFFERSIZE);
