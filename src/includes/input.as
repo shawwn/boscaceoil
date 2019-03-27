@@ -1,4 +1,16 @@
-﻿public function input(key:KeyPoll):void {
+﻿public static function fillevery():int {
+  if (control.iskeydown(192)) { // tilde
+    return 0;
+  }
+  for (var i:int = 0; i <= 9; i++) {
+    if (control.iskeydown(String(i).charCodeAt(0))) {
+      return control.notelength * i;
+    }
+  }
+  return -1;
+}
+
+public function input(key:KeyPoll):void {
 	var i:int, j:int, k:int;
 	
 	generickeypoll();
@@ -135,40 +147,69 @@
 			control.showmessage("PATTERNS COPIED");
 		}
 	}
+
+  if (control.iskeydown(Keyboard.SHIFT)) {
+    for (i = 1; i <= 9; i++) {
+      if (control.iskeydown(String(i).charCodeAt(0))) {
+        control.notelength = 1 << (i-1);
+      }
+    }
+  }
 	
 	if (control.cursorx > -1 && control.cursory > -1 && control.currentbox > -1 && !control.clicklist) {
 		if (key.press && control.dragaction == 0) {
 			//Add note 
+      var every:int = fillevery();
+      var box:musicphraseclass = control.musicbox[control.currentbox];
+      var ix:int;
 
 			if (!key.shiftheld) {
 				//Remove any note in this position
-				if (control.musicbox[control.currentbox].start + ((gfx.patterneditorheight - 1) - control.cursorywas) > -1) {
+				if (box.start + ((gfx.patterneditorheight - 1) - control.cursorywas) > -1) {
 					//OLD
-					//control.currentnote = control.pianoroll[control.musicbox[control.currentbox].start + ((gfx.patterneditorheight - 1) - control.cursorywas)];
-					if(control.musicbox[control.currentbox].start + control.cursorywas - 1 > -1){
-						control.currentnote = control.pianoroll[control.musicbox[control.currentbox].start + control.cursorywas - 1];
+					//control.currentnote = control.pianoroll[box.start + ((gfx.patterneditorheight - 1) - control.cursorywas)];
+					if(box.start + control.cursorywas - 1 > -1){
+						control.currentnote = control.pianoroll[box.start + control.cursorywas - 1];
 					}
-
-					control.musicbox[control.currentbox].removenote(control.cursorxwas, control.currentnote);
+          if (every >= 0) {
+            for (ix = control.cursorx; ix < control.boxcount; ix++) {
+              if (box.noteat(ix, control.currentnote)) {
+                box.removenote(ix, control.currentnote);
+              }
+            }
+          } else {
+            box.removenote(control.cursorxwas, control.currentnote);
+          }
 				}
 			}
 
-			if (control.musicbox[control.currentbox].start + control.cursory - 1 == -1) {
+			if (box.start + control.cursory - 1 == -1) {
 				if (key.click) {
 					//Enable/Disable recording filter for this musicbox
-					control.musicbox[control.currentbox].recordfilter = 1 - control.musicbox[control.currentbox].recordfilter;
+					box.recordfilter = 1 - box.recordfilter;
 				}
 			}else {
-        var box:musicphraseclass = control.musicbox[control.currentbox];
 				if(box.start + control.cursory - 1 > -1 &&
 					 box.start + control.cursory - 1 < control.pianorollsize) {
 					control.currentnote = control.pianoroll[box.start + control.cursory - 1];
 					if (box.noteat(control.cursorx, control.currentnote)) {
 						box.removenote(control.cursorx, control.currentnote);
-						box.addnote(control.cursorx, control.currentnote, control.notelength);
-					}else{
-						box.addnote(control.cursorx, control.currentnote, control.notelength);
 					}
+          if (every < 0) {
+            box.addnote(control.cursorx, control.currentnote, control.notelength);
+          } else {
+            var ix:int;
+            for (ix = control.cursorx; ix < control.boxcount; ix++) {
+              if (box.noteat(ix, control.currentnote)) {
+                box.removenote(ix, control.currentnote);
+              }
+            }
+            if (every > 0) {
+              for (ix = control.cursorx; ix < control.boxcount; ix += every) {
+                box.addnote(ix, control.currentnote, control.notelength);
+              }
+            }
+          }
           //box[i].isplayed = true;
           //control._driver.noteOn(int(box[i].notes[j].x), control.instrument[box[i].instr].voice, int(box[i].notes[j].y));
 				}
