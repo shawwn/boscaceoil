@@ -173,7 +173,7 @@
 				pal[105 + 10*i].swap(pal[100 + 10*i]);     //Note, bright part
 
 				pal[100 + 10*i].setto(236, 238, 241);       //Bar, Bright
-				pal[101 + 10*i].setto(217, 222, 227);       //Bar, Dark
+				pal[101 + 10*i].setto(207, 202, 227);       //Bar, Dark
 				pal[102 + 10*i].setto(0, 0, 0, 5);   //Guideline
 				pal[103 + 10*i].setto(0, 0, 0, 10);     //Dark guideline
 			}
