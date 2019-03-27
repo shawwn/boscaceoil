@@ -1,5 +1,5 @@
 // temporary: ignore the entire contents of this file when building for web
-CONFIG::desktop {
+//CONFIG::desktop {
 package {
 	import flash.display.*;
 	import flash.geom.*;
@@ -773,4 +773,4 @@ package {
 		public static var midiexporter:Midiexporter;
 	}
 }
-}
+//}

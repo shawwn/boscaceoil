@@ -72,7 +72,7 @@ package
 			
 			CONFIG::desktop
 			{
-				NativeApplication.nativeApplication.setAsDefaultApplication("ceol");
+				//NativeApplication.nativeApplication.setAsDefaultApplication("ceol");
 				NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, onInvokeEvent);
 			}
 			
